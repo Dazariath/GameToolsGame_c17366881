@@ -1,27 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NewCharacterController : MonoBehaviour {
 
-    private Animator _animator;
+    private Animator m_animator;
 
-    float m_sprint;
+    float m_sprint;   
+
+    private bool m_enableIK;
+    private float m_weightIK;
+    private Vector3 m_positionIK;
 
     // Use this for initialization
     void Start () {
-        _animator = GetComponent<Animator>();
+        m_animator = GetComponent<Animator>();
 	}    
 
     public void Move(float turn,float forward, bool jump, float sprint)
     {
-        _animator.SetFloat("turn", turn);
-        _animator.SetFloat("forward", forward);
-        _animator.SetFloat("sprint", sprint);
+        m_animator.SetFloat("turn", turn);
+        m_animator.SetFloat("forward", forward);
+        m_animator.SetFloat("sprint", sprint);        
 
         if (jump)
         {
-            _animator.SetTrigger("jump");            
+            m_animator.SetTrigger("jump");
+            m_animator.SetFloat("turn", turn);
+            m_animator.SetFloat("forward", forward);
         }
 
         //Sprinting();
@@ -38,4 +45,7 @@ public class NewCharacterController : MonoBehaviour {
             m_sprint = 0.0f;
         }
     }*/
+
+    
+
 }

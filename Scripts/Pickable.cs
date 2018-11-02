@@ -4,23 +4,11 @@ using UnityEngine;
 
 public class Pickable : MonoBehaviour {
 
-    public bool picked;
+    public GameObject Brigde;
 
-    public void BePicked(Transform newParent)
+    void OnTriggerEnter(Collider other)
     {
-        picked = true;
-        StartCoroutine(HandlePick(newParent));
-    }
-
-    IEnumerator HandlePick(Transform newParent)
-    {
-        yield return new WaitForSeconds(1.5f);
-        transform.parent = newParent;
-        transform.localPosition = Vector3.zero;
-
-        yield return new WaitForSeconds(3.0f);
-        Destroy(gameObject);
-
-    }
+        Brigde.SetActive(true);
+    }    
 
 }
